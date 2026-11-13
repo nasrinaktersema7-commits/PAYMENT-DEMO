@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174fbd">
+  <title>Add Money | My Website</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;color:#172033;background:#f2f6fc}
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(150deg,#edf4ff,#f7f9fc);min-height:100vh}
+    header{background:#fff;padding:18px 20px;box-shadow:0 3px 18px #173b7514;font-weight:800;color:#174fbd}
+    main{max-width:720px;margin:26px auto;padding:0 16px 36px}
+    .hero{border-radius:26px;padding:28px;color:#fff;background:linear-gradient(120deg,#124d65,#1757a6);box-shadow:0 14px 32px #164c8225}
+    .hero small{letter-spacing:1px;font-weight:700;opacity:.85}.hero h1{font-size:clamp(28px,6vw,42px);margin:12px 0}.hero p{margin:0;opacity:.85;line-height:1.7}
+    .card{background:#fff;border-radius:26px;padding:24px;margin-top:20px;box-shadow:0 10px 30px #1c3d6810}
+    h2{margin:0 0 8px;font-size:25px}.muted{color:#7b8494;margin-top:0}
+    .methods{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+    .method{border:2px solid #e2e8f2;border-radius:16px;background:#fff;padding:9px;cursor:pointer;color:#283247;font-weight:700}
+    .method img{width:100%;height:78px;object-fit:cover;border-radius:10px;display:block;margin-bottom:8px}
+    .method[aria-pressed=true]{border-color:#1d59bd;box-shadow:0 0 0 3px #1d59bd18}
+    label{display:block;font-weight:700;margin:18px 0 8px}
+    input{width:100%;padding:16px;border:1.5px solid #d8deea;border-radius:14px;font:inherit;background:#fbfcff}
+    .destination{padding:15px;border-radius:14px;background:#eef5ff;margin:16px 0;line-height:1.7}
+    button.submit{width:100%;border:0;border-radius:15px;padding:17px;background:#1855b9;color:#fff;font:700 17px inherit;cursor:pointer}
+    button:disabled{opacity:.6;cursor:wait}
+    #message{margin-top:16px;padding:14px;border-radius:12px;display:none;line-height:1.6}
+    .notice{font-size:13px;color:#6e7787;line-height:1.7;margin-top:16px}
+    @media(max-width:460px){.card{padding:18px}.methods{gap:7px}.method{font-size:13px;padding:6px}.method img{height:62px}}
+  </style>
+</head>
+<body>
+<header>◆ MY TOPUP — Add Money</header>
+<main>
+  <section class="hero">
+    <small>INSTANT REQUEST • PAYMENT REVIEW</small>
+    <h1>Add Money to Your Wallet</h1>
+    <p>পেমেন্টের তথ্য জমা দিন। যাচাই সম্পন্ন না হওয়া পর্যন্ত ব্যালেন্স যোগ হবে না।</p>
+  </section>
+
+  <section class="card">
+    <h2>পেমেন্ট পদ্ধতি নির্বাচন করুন</h2>
+    <p class="muted">আপনি যে মাধ্যমে টাকা পাঠিয়েছেন সেটি বেছে নিন।</p>
+    <div class="methods">
+      <button class="method" type="button" data-method="bkash" aria-pressed="true">
+        <img src="/images/bkash.jpg" alt="bKash payment">bKash
+      </button>
+      <button class="method" type="button" data-method="nagad" aria-pressed="false">
+        <img src="/images/nagad.jpg" alt="Nagad payment">Nagad
+      </button>
+      <button class="method" type="button" data-method="rocket" aria-pressed="false">
+        <img src="/images/rocket.jpg" alt="Rocket payment">Rocket
+      </button>
+    </div>
+
+    <div class="destination">
+      <strong>টাকা পাঠানোর নম্বর:</strong>
+      <div id="payment-number">লোড হচ্ছে…</div>
+      <small>শুধু আপনার নির্বাচিত পেমেন্ট পদ্ধতির নম্বরে টাকা পাঠাবেন।</small>
+    </div>
+
+    <form id="payment-form">
+      <label for="amount">টাকার পরিমাণ (BDT)</label>
+      <input id="amount" name="amount" type="number" min="1" max="50000" step="1" placeholder="যেমন: 100" required>
+      <label for="transactionId">Transaction ID</label>
+      <input id="transactionId" name="transactionId" type="text" minlength="6" maxlength="40" placeholder="আপনার Transaction ID" required>
+      <button class="submit" id="submit-button" type="submit">পেমেন্ট রিকোয়েস্ট জমা দিন →</button>
+    </form>
+    <div id="message" role="status" aria-live="polite"></div>
+    <p class="notice">নিরাপত্তা: PIN/OTP কখনো এখানে লিখবেন না। এই নমুনা সাইট শুধু রিকোয়েস্ট সংরক্ষণ করে; এটি ব্যাংক/ওয়ালেটের লেনদেন যাচাই করে না এবং স্বয়ংক্রিয়ভাবে ব্যালেন্স যোগ করে না। বাস্তব ব্যবহারের আগে অনুমোদিত Merchant/Gateway verification ও লগইন-ভিত্তিক user wallet যুক্ত করতে হবে।</p>
+  </section>
+</main>
+<script src="/payment.js" defer></script>
+</body>
+</html>
